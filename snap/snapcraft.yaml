@@ -62,9 +62,21 @@ parts:
     organize:
       locales-launch: bin/
 
+  # A text edit for bashbug(1)
+  nano:
+    plugin: nil
+    stage-packages:
+    - nano
+
 apps:
   bash-brlin:
     adapter: full
     command: bin/bash
+    command-chain:
+    - bin/locales-launch
+
+  bashbug:
+    adapter: full
+    command: bin/bashbug
     command-chain:
     - bin/locales-launch
