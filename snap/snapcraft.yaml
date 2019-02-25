@@ -1,15 +1,26 @@
-name: my-snap-name # you probably want to 'snapcraft register <name>'
-base: core18 # the base snap is the execution environment for this snap
-version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+name: bash
+base: core18
+version: provided-by-version-script
+version-script: git -C parts/bash/src describe --all --dirty --tags
+summary: The Bourne Again SHell
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh). It is intended to conform to the IEEE POSIX P1003.2/ISO 9945.2 Shell and Tools standard. It offers functional improvements over sh for both programming and interactive use. In addition, most sh scripts can be run by Bash without modification.
 
-grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: devmode # use 'strict' once you have the right plugs and slots
+  The improvements offered by Bash include:
+
+  * Command line editing
+  * Unlimited size command history
+  * Job Control
+  * Shell Functions and Aliases
+  * Indexed arrays of unlimited size
+  * Integer arithmetic in any base from two to sixty-four
+
+  The maintainer also has a [bash page](https://tiswww.case.edu/php/chet/bash/bashtop.html) which includes [Frequently-Asked-Questions](ftp://ftp.cwru.edu/pub/bash/FAQ).
+
+  NOTE: This is NOT an official distribution of bash, refer the snap's [issue tracker](https://github.com/Lin-Buo-Ren/bash-snap.git) for issues regarding the use of this snap.
+
+grade: devel
+confinement: devmode
 
 parts:
   my-part:
