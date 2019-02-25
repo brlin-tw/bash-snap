@@ -1,7 +1,8 @@
 name: bash
 base: core18
-version: provided-by-version-script
-version-script: git -C parts/bash/src describe --all --dirty --tags
+version: '5.0'
+#version: provided-by-version-script
+#version-script: git -C parts/bash/src describe --all --dirty --tags
 summary: The Bourne Again SHell
 description: |
   Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh). It is intended to conform to the IEEE POSIX P1003.2/ISO 9945.2 Shell and Tools standard. It offers functional improvements over sh for both programming and interactive use. In addition, most sh scripts can be run by Bash without modification.
@@ -23,6 +24,47 @@ grade: devel
 confinement: devmode
 
 parts:
-  my-part:
-    # See 'snapcraft plugins'
-    plugin: nil
+  bash:
+    source: bash-5.0.tar.gz
+    #source: http://ftpmirror.gnu.org/bash/bash-5.0.tar.gz
+    source-checksum: sha256/b4a80f2ac66170b2913efbfb9f2594f1f76c7b1afd11f799e22035d63077fb4d
+
+    #source: git://git.savannah.gnu.org/bash.git
+    #source-tag: bash-5.0
+    #source-depth: 1
+    plugin: autotools
+
+    configflags:
+    - --datarootdir=/snap/$SNAPCRAFT_PROJECT_NAME/current/share
+
+    organize:
+      snap/$SNAPCRAFT_PROJECT_NAME/current: /
+
+  # https://github.com/Lin-Buo-Ren/locales-launch-part
+  locales-launch:
+    plugin: dump
+    source: snap/local/launchers
+    stage-packages:
+    # For localedef(1)
+    - libc-bin
+
+    # For locale data used by localedef(1)
+    - locales
+
+    # All pre-generated locale data
+    # DISABLED: Lots of duplicate data will be included in snap when this is staged, unless the target machine has no resource to generate them in runtime otherwise not using it
+    #
+    #   Lack of compiled locales breaks gettext based localisation - snapcraft - snapcraft.io
+    #   https://forum.snapcraft.io/t/lack-of-compiled-locales-breaks-gettext-based-localisation/3758
+    #
+    #- locales-all
+
+    organize:
+      locales-launch: bin/
+
+apps:
+  bash:
+    adapter: full
+    command: bin/bash
+    command-chain:
+    - bin/locales-launch
