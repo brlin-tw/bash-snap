@@ -1,9 +1,10 @@
 name: bash-brlin
+title: The Bourne Again SHell (UNOFFICIAL)
 base: core18
 version: '5.0'
 #version: provided-by-version-script
 #version-script: git -C parts/bash/src describe --all --dirty --tags
-summary: The Bourne Again SHell
+summary: The Bourne Again SHell(Bash) (UNOFFICIAL, EXPERIMENTAL)
 description: |
   Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh). It is intended to conform to the IEEE POSIX P1003.2/ISO 9945.2 Shell and Tools standard. It offers functional improvements over sh for both programming and interactive use. In addition, most sh scripts can be run by Bash without modification.
 
