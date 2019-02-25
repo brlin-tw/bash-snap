@@ -20,7 +20,7 @@ description: |
 
   NOTE: This is NOT an official distribution of bash, refer the snap's [issue tracker](https://github.com/Lin-Buo-Ren/bash-snap.git) for issues regarding the use of this snap.
 
-grade: devel
+grade: stable
 confinement: devmode
 
 parts:
