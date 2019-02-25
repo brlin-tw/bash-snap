@@ -25,8 +25,7 @@ confinement: devmode
 
 parts:
   bash:
-    source: bash-5.0.tar.gz
-    #source: http://ftpmirror.gnu.org/bash/bash-5.0.tar.gz
+    source: http://ftpmirror.gnu.org/bash/bash-5.0.tar.gz
     source-checksum: sha256/b4a80f2ac66170b2913efbfb9f2594f1f76c7b1afd11f799e22035d63077fb4d
 
     #source: git://git.savannah.gnu.org/bash.git
