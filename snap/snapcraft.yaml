@@ -1,4 +1,4 @@
-name: bash
+name: bash-brlin
 base: core18
 version: '5.0'
 #version: provided-by-version-script
@@ -63,7 +63,7 @@ parts:
       locales-launch: bin/
 
 apps:
-  bash:
+  bash-brlin:
     adapter: full
     command: bin/bash
     command-chain:
