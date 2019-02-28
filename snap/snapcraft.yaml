@@ -25,7 +25,18 @@ grade: stable
 confinement: strict
 
 parts:
+  patches:
+    source: snap/local/patches
+    plugin: dump
+    organize:
+      '*': assets/patches/
+    prime:
+    - -*
+
   bash:
+    after:
+    - patches
+
     source: http://ftpmirror.gnu.org/bash/bash-5.0.tar.gz
     source-checksum: sha256/b4a80f2ac66170b2913efbfb9f2594f1f76c7b1afd11f799e22035d63077fb4d
 
@@ -39,6 +50,14 @@ parts:
 
     organize:
       snap/$SNAPCRAFT_PROJECT_NAME/current: /
+
+    override-build: |
+      snapcraftctl build
+      sed \
+        --in-place \
+        --regexp-extended \
+        --file="${SNAPCRAFT_STAGE}"/assets/patches/"Customized bashbug(1) version string.sed" \
+        "${SNAPCRAFT_PART_INSTALL}"/bin/bashbug
 
   # https://github.com/Lin-Buo-Ren/locales-launch-part
   locales-launch:
