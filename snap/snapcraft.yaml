@@ -22,7 +22,7 @@ description: |
   NOTE: This is NOT an official distribution of bash, refer the snap's [issue tracker](https://github.com/Lin-Buo-Ren/bash-snap.git) for issues regarding the use of this snap.
 
 grade: stable
-confinement: strict
+confinement: classic
 
 parts:
   patches:
