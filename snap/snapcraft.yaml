@@ -1,9 +1,8 @@
 name: bash-brlin
 title: The Bourne Again SHell (UNOFFICIAL)
 base: core18
-version: '5.0'
-#version: provided-by-version-script
-#version-script: git -C parts/bash/src describe --all --dirty --tags
+version: provided-by-version-script
+version-script: git -C parts/bash/src describe --always --dirty --tags | sed 's/^bash-//'
 summary: The Bourne Again SHell(Bash) (UNOFFICIAL, EXPERIMENTAL)
 description: |
   Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh). It is intended to conform to the IEEE POSIX P1003.2/ISO 9945.2 Shell and Tools standard. It offers functional improvements over sh for both programming and interactive use. In addition, most sh scripts can be run by Bash without modification.
@@ -37,12 +36,11 @@ parts:
     after:
     - patches
 
-    source: http://ftpmirror.gnu.org/bash/bash-5.0.tar.gz
-    source-checksum: sha256/b4a80f2ac66170b2913efbfb9f2594f1f76c7b1afd11f799e22035d63077fb4d
+    source: git://git.savannah.gnu.org/bash.git
+    source-depth: 50
 
-    #source: git://git.savannah.gnu.org/bash.git
+    # For building stable releases
     #source-tag: bash-5.0
-    #source-depth: 1
     plugin: autotools
 
     configflags:
