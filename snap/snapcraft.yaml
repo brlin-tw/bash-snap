@@ -81,7 +81,7 @@ parts:
     organize:
       locales-launch: bin/
 
-  # A text edit for bashbug(1)
+  # A text editor for bashbug(1)
   nano:
     plugin: nil
     stage-packages:
