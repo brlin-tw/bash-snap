@@ -85,6 +85,10 @@ parts:
     stage-packages:
     - nano
 
+plugs:
+  home:
+  removable-media:
+
 apps:
   bash-brlin:
     adapter: full
