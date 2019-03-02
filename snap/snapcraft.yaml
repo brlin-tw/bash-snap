@@ -37,7 +37,7 @@ parts:
     - patches
 
     source: git://git.savannah.gnu.org/bash.git
-    source-depth: 50
+    source-depth: 30
 
     # For building stable releases
     #source-tag: bash-5.0
