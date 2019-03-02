@@ -40,7 +40,7 @@ parts:
     source-depth: 30
 
     # For building stable releases
-    source-tag: bash-5.0
+    #source-tag: bash-5.0
     plugin: autotools
 
     build-packages:
