@@ -43,11 +43,24 @@ parts:
     #source-tag: bash-5.0
     plugin: autotools
 
+    build-packages:
+    # Needed to process parse.y
+    - bison
+
+    # Compile Gettext message catalogs
+    - gettext
+
+    - libncurses5-dev
+
+    # For documentation compilation
+    - texinfo
+    - texi2html
+    - texlive-fonts-recommended
+    - texlive-latex-base
+    - ghostscript
+
     configflags:
     - --datarootdir=/snap/$SNAPCRAFT_PROJECT_NAME/current/share
-
-    organize:
-      snap/$SNAPCRAFT_PROJECT_NAME/current: /
 
     override-build: |
       snapcraftctl build
@@ -56,6 +69,16 @@ parts:
         --regexp-extended \
         --file="${SNAPCRAFT_STAGE}"/assets/patches/"Customized bashbug(1) version string.sed" \
         "${SNAPCRAFT_PART_INSTALL}"/bin/bashbug
+
+      # PDF files will not be built nor installed, do them manually
+      make -C doc pdf
+      install \
+        --mode=644 \
+        doc/*.pdf \
+        "${SNAPCRAFT_PART_INSTALL}"/snap/"${SNAPCRAFT_PROJECT_NAME}"/current/share/doc/bash
+
+    organize:
+      snap/$SNAPCRAFT_PROJECT_NAME/current: /
 
   # https://github.com/Lin-Buo-Ren/locales-launch-part
   locales-launch:
